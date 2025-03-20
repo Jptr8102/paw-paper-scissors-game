@@ -1,28 +1,46 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { Pressable, View, Text, StyleSheet } from "react-native";
 
-function StartButton({ children, onPress, style }) {
+function StartButton({ children, onPress }) {
+  // console.log("StartButton children", children);
   return (
-    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
-      <Text style={[styles.buttonText]}>{children}</Text>;
-    </TouchableOpacity>
+    <View style={styles.buttonOuterContainer}>
+      <Pressable
+        style={({ pressed }) =>
+          pressed
+            ? [styles.buttonInnerContainer, styles.pressed]
+            : styles.buttonInnerContainer
+        }
+        onPress={onPress}
+        android_ripple={{ color: "white" }}
+      >
+        <Text style={styles.buttonText}>{children}</Text>
+      </Pressable>
+    </View>
   );
 }
 
 export default StartButton;
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "#FFD766",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
+  buttonOuterContainer: {
+    borderRadius: 28,
+    margin: 4,
+    overflow: "hidden",
+  },
+  buttonInnerContainer: {
+    backgroundColor: "#504CAA",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    elevation: 2,
   },
   buttonText: {
-    color: "#1C1C1C",
-    fontSize: 16,
+    color: "#F8FFDE",
+    textAlign: "center",
     fontWeight: "bold",
+    fontSize: 20,
+  },
+  pressed: {
+    opacity: 0.75,
   },
 });

@@ -1,37 +1,56 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-// import { useFonts } from "expo-font";
+import { useFonts } from "expo-font";
+import { LinearGradient } from "expo-linear-gradient";
 
-// import AppLoading from "expo-app-loading";
+import { GameProvider } from "./context/GameContext";
+
+import AppLoading from "expo-app-loading";
 import StartScreen from "../paw-paper-scissors-game/screens/StartScreen";
+import GameScreen from "../paw-paper-scissors-game/screens/GameScreen";
+import CharacterSelectScreen from "../paw-paper-scissors-game/screens/CharacterSelectScreen";
+import GameOverScreenScreen from "../paw-paper-scissors-game/screens/GameOverScreen";
 
 export default function App() {
   const [screenNum, setScreenNum] = useState(1);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
   let screen;
 
   function changeScreenHandler(num) {
     setScreenNum(num);
   }
 
-  // const [fontsLoaded] = useFonts({
-  //   "super-shape": require("./assets/fonts/SuperShape-PV9qE.ttf"),
-  // });
+  function handleCharacterSelect(characterId) {
+    setSelectedCharacter(characterId);
+    changeScreenHandler(2);
+  }
 
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // }
+  const [fontsLoaded] = useFonts({
+    "super-shape": require("./assets/fonts/SuperShape-PV9qE.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   if (screenNum === 1) {
-    screen = <StartScreen onScreenChange={() => changeScreenHandler(2)} />;
+    screen = <StartScreen onStartGame={() => changeScreenHandler(3)} />;
   }
 
   if (screenNum === 2) {
-    screen = <GameScreen onScreenChange={changeScreenHandler} />;
+    screen = (
+      <GameScreen
+        onScreenChange={changeScreenHandler}
+        selectedCharacter={selectedCharacter}
+      />
+    );
   }
 
   if (screenNum === 3) {
-    screen = <CharacterSelectScreen onScreenChange={changeScreenHandler} />;
+    screen = (
+      <CharacterSelectScreen onCharacterSelect={handleCharacterSelect} />
+    );
   }
 
   if (screenNum === 4) {
@@ -39,12 +58,14 @@ export default function App() {
   }
 
   return (
-    // <LinearGradient colors={["#2980B9", "#6DD5FA"]} style={styles.container}>
-    <SafeAreaView style={styles.rootScreen}>
-      <StatusBar style="auto" />
-      {screen}
-    </SafeAreaView>
-    // </LinearGradient>
+    <GameProvider>
+      <LinearGradient colors={["#FFCFB8", "#F8FFDE"]} style={styles.container}>
+        <SafeAreaView style={styles.rootScreen}>
+          <StatusBar style="auto" />
+          {screen}
+        </SafeAreaView>
+      </LinearGradient>
+    </GameProvider>
   );
 }
 

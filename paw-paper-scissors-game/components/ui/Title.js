@@ -8,9 +8,10 @@ export default Title;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    fontFamily: "super-shape",
+    fontSize: 33,
     fontWeight: "bold",
-    color: "pink",
+    color: "#504CAA",
     textAlign: "center",
   },
 });
