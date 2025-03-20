@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -10,7 +10,6 @@ import AppLoading from "expo-app-loading";
 import StartScreen from "../paw-paper-scissors-game/screens/StartScreen";
 import GameScreen from "../paw-paper-scissors-game/screens/GameScreen";
 import CharacterSelectScreen from "../paw-paper-scissors-game/screens/CharacterSelectScreen";
-import GameOverScreenScreen from "../paw-paper-scissors-game/screens/GameOverScreen";
 
 export default function App() {
   const [screenNum, setScreenNum] = useState(1);

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import StartButton from "../components/ui/StartButton";
 import Title from "../components/ui/Title";
