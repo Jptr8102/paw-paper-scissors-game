@@ -10,6 +10,7 @@ import AppLoading from "expo-app-loading";
 import StartScreen from "../paw-paper-scissors-game/screens/StartScreen";
 import GameScreen from "../paw-paper-scissors-game/screens/GameScreen";
 import CharacterSelectScreen from "../paw-paper-scissors-game/screens/CharacterSelectScreen";
+import GameOverScreen from "../paw-paper-scissors-game/screens/GameOverScreen";
 
 export default function App() {
   const [screenNum, setScreenNum] = useState(1);

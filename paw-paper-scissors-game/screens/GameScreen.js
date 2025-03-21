@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import { useGame } from "../context/GameContext";
 
 function GameScreen({ onScreenChange, selectedCharacter }) {
   const { playerChoice, computerChoice, gameResult, playRound, resetGame } =
     useGame();
+
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const handlePlayerChoice = (choice) => {
     playRound(choice);
@@ -56,6 +58,12 @@ function GameScreen({ onScreenChange, selectedCharacter }) {
     return imageList[selectedCharacter][imageName];
   };
 
+  useEffect(() => {
+    if (gameResult === "LOSE") {
+      onScreenChange(4);
+    }
+  }, [gameResult]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
@@ -67,7 +75,6 @@ function GameScreen({ onScreenChange, selectedCharacter }) {
       <Text style={styles.text}>Result: {gameResult}</Text>
 
       <View style={styles.buttonContainer}>
-        {/* ROCK */}
         <Pressable
           style={styles.rockButton}
           onPress={() => handlePlayerChoice(1)}
@@ -75,7 +82,6 @@ function GameScreen({ onScreenChange, selectedCharacter }) {
           <Image source={getHandImage(1)} />
         </Pressable>
 
-        {/* PAPER */}
         <Pressable
           style={styles.paperButton}
           onPress={() => handlePlayerChoice(2)}
@@ -83,7 +89,6 @@ function GameScreen({ onScreenChange, selectedCharacter }) {
           <Image source={getHandImage(2)} />
         </Pressable>
 
-        {/* SCISSORS */}
         <Pressable
           style={styles.scissorsButton}
           onPress={() => handlePlayerChoice(3)}
