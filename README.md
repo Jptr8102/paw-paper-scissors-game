@@ -18,6 +18,9 @@ Paw Paper Scissors is a React Native Expo app where you can play Rock, Paper, Sc
 <img width="449" alt="Game Screen" src="https://github.com/Jptr8102/paw-paper-scissors-game/blob/main/paw-paper-scissors-game/screenshots/sc3.png" />
 <img width="449" alt="Game Screen" src="https://github.com/Jptr8102/paw-paper-scissors-game/blob/main/paw-paper-scissors-game/screenshots/sc4.png" />
 <img width="449" alt="Game Screen" src="https://github.com/Jptr8102/paw-paper-scissors-game/blob/main/paw-paper-scissors-game/screenshots/sc5.png" />
+   
+5. Game Over Screen: Once you lose a game you will end up here where you can restart the game.
+
 <img width="449" alt="Game Screen" src="https://github.com/Jptr8102/paw-paper-scissors-game/blob/main/paw-paper-scissors-game/screenshots/sc6.png" />
 
 
